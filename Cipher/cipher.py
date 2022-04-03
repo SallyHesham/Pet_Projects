@@ -95,6 +95,58 @@ def caesar_brute_force(text):
         print("\n")
     return
 
+def by_parts_inverse(text, size):
+    final = ''
+    lAltAlphabet = []
+    uAltAlphabet = []
+    partition = 0
+    while partition < 26:
+        for x in range(partition + size - 1, partition - 1, -1):
+            lAltAlphabet.append(lalphabet[x])
+            uAltAlphabet.append(ualphabet[x])
+        if partition == 25: break
+        elif partition + size >= 25: partition = 25
+        else: partition = partition + size
+        if partition + size > 26: size = 26 - partition
+
+    for letter in text:
+        try:
+            pos = lalphabet.index(letter)
+            final = final + lAltAlphabet[pos]
+        except:
+            try:
+                pos = ualphabet.index(letter)
+                final = final + uAltAlphabet[pos]
+            except:
+                final = final + letter
+    return final
+
+def by_parts_inverse_alt(text, size):
+    final = ''
+    lAltAlphabet = []
+    uAltAlphabet = []
+    partition = 0
+    while partition < 26:
+        for x in range(partition + size - 1, partition - 1, -1):
+            lAltAlphabet.append(lalphabet[x])
+            uAltAlphabet.append(ualphabet[x])
+        if partition == 25: break
+        elif partition + size >= 25: partition = 25
+        else: partition = partition + size
+        if partition + size + size > 26: size = 26 - partition
+
+    for letter in text:
+        try:
+            pos = lalphabet.index(letter)
+            final = final + lAltAlphabet[pos]
+        except:
+            try:
+                pos = ualphabet.index(letter)
+                final = final + uAltAlphabet[pos]
+            except:
+                final = final + letter
+    return final
+
 #file = open('romeo.txt').read()
 #key = keyword_int('aab ')
 #print(vigenere_decipher('Ad.siao .aab', key))
@@ -114,3 +166,6 @@ txt = 'I am the outlander. Traveler of countless worlds.'
 print(txt)
 print(vigenere_cipher(txt, key))
 #print(vigenere_decipher(txtFile2, key))
+txt = 'ygykq ykck\nmkrpzkq tnelik'
+print(txt)
+print(by_parts_inverse_alt(txt, 5))
