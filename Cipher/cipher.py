@@ -99,15 +99,15 @@ def by_parts_inverse(text, size):
     final = ''
     lAltAlphabet = []
     uAltAlphabet = []
-    partition = 0
-    while partition < 26:
-        for x in range(partition + size - 1, partition - 1, -1):
+    index = 0
+    while index < 26:
+        for x in range(index + size - 1, index - 1, -1):
             lAltAlphabet.append(lalphabet[x])
             uAltAlphabet.append(ualphabet[x])
-        if partition == 25: break
-        elif partition + size >= 25: partition = 25
-        else: partition = partition + size
-        if partition + size > 26: size = 26 - partition
+        if index == 25: break
+        elif index + size >= 25: index = 25
+        else: index = index + size
+        if index + size > 26: size = 26 - index
 
     for letter in text:
         try:
@@ -125,15 +125,15 @@ def by_parts_inverse_alt(text, size):
     final = ''
     lAltAlphabet = []
     uAltAlphabet = []
-    partition = 0
-    while partition < 26:
-        for x in range(partition + size - 1, partition - 1, -1):
+    index = 0
+    while index < 26:
+        for x in range(index + size - 1, index - 1, -1):
             lAltAlphabet.append(lalphabet[x])
             uAltAlphabet.append(ualphabet[x])
-        if partition == 25: break
-        elif partition + size >= 25: partition = 25
-        else: partition = partition + size
-        if partition + size + size > 26: size = 26 - partition
+        if index == 25: break
+        elif index + size >= 25: index = 25
+        else: index = index + size
+        if index + size + size > 26: size = 26 - index
 
     for letter in text:
         try:
@@ -146,26 +146,3 @@ def by_parts_inverse_alt(text, size):
             except:
                 final = final + letter
     return final
-
-#file = open('romeo.txt').read()
-#key = keyword_int('aab ')
-#print(vigenere_decipher('Ad.siao .aab', key))
-#txtFile = open('domain_script.txt').read()
-#keyFile = open('domain_script_keys_3.txt').read()
-#caesar_brute_force(txtFile)
-#words = txtFile.split()
-#keys = keyFile.split()
-#for key, word in zip(keys, words):
-    #print(caesar_decipher(word, int(key)))
-key = keyword_int('peacock')
-txt = 'I am the outlander. Traveler of countless worlds.'
-#txt = txtFile.split()
-#for word in txt[::-1]:
-    #print(vigenere_decipher(word, key))
-#txtFile2 = open('domain_script_reverse.txt').read()
-print(txt)
-print(vigenere_cipher(txt, key))
-#print(vigenere_decipher(txtFile2, key))
-txt = 'ygykq ykck\nmkrpzkq tnelik'
-print(txt)
-print(by_parts_inverse_alt(txt, 5))
